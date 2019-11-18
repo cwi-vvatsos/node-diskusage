@@ -23,7 +23,7 @@ static NAN_METHOD(GetDiskUsage)
     Nan::HandleScope scope;
 
     try {
-        DiskUsage result = GetDiskUsage(*Nan::Utf8String(info[0]));
+        DiskUsage result = GetDiskUsage(*Nan::Utf8String(v8::Isolate::GetCurrent(),info[0]));
         info.GetReturnValue().Set(ConvertDiskUsage(result));
     }
     catch (const SystemError &error) {
